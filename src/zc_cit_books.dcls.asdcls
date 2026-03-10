@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_CIT_BOOKS'
+@MappingRole: true
+define role ZC_CIT_BOOKS {
+  grant select on ZC_CIT_BOOKS
+  where INHERITING CONDITIONS FROM ENTITY ZR_CIT_BOOKS REPLACING { ROOT WITH _BaseEntity };
+}

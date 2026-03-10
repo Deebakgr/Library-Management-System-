@@ -1,0 +1,57 @@
+managed implementation in class ZBP_R_CIT_BOOKS000 unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CIT_BOOKS alias ZrCitBooks
+persistent table ZCIT_BOOKS
+extensible
+draft table ZCIT_BOOKS_D
+etag master LastChangedAt
+lock master total etag LocalLastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   BookUUID,
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( numbering : managed )
+   BookUUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCIT_BOOKS corresponding extensible
+  {
+    BookUUID = BOOK_UUID;
+    Title = TITLE;
+    Author = AUTHOR;
+    Category = CATEGORY;
+    PublishYear = PUBLISH_YEAR;
+    Status = STATUS;
+    BorrowerName = BORROWER_NAME;
+    BorrowDate = BORROW_DATE;
+    Email = EMAIL;
+    MobileNumber = MOBILE_NUMBER;
+    City = CITY;
+    State = STATE;
+    AddressLine = ADDRESS_LINE;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+}
